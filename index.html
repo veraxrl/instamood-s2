@@ -24,17 +24,13 @@
 </head>
 <body ng-app="Instamood">
 	<div class="container" ng-controller="MainCtrl">
-		<div class="row">
+		<div class="row profile">
 			<h1>User's Stats</h1>
 			<p>Ego Score: {{ego}}</p>
 			<p>Popularity: {{pop}}</p>
 			<p>Active Days: {{active}}</p>
 			<p>Brevity: {{brevity}}</p>
 			<p>Visibility Thirst: {{thirst}}</p>
-		</div>
-
-		<div class="row">
-			<button ng-click="analyzeSentiments()">Analyze Sentiments</button>
 		</div>
 
 		<div class="row">
@@ -47,15 +43,19 @@
 			<div ng-show="hasToken">
         <!-- challenge: make it so that you don't have to click this link for
              the pictures the load -->
+			<div class="row">
+				<button ng-click="analyzeSentiments()">Analyze Sentiments</button>
 				<button ng-click="getInstaPics()">Load pictures!</button>
-				<ul style="list-style:none;" class="listItem">
-					<li ng-repeat="pic in picArray track by $index" class="col-lg-4 col-md-4 col-sm-12">
-						<div>
-							<img src="{{pic.images.standard_resolution.url}}">
-						</div>
-						<p>{{pic.caption.text}}</p>
-					</li>
-				</ul>
+			</div>
+
+			<ul style="list-style:none;">
+				<li ng-repeat="pic in picArray track by $index" class="col-lg-6 col-md-6 col-sm-12">
+					<div class="listItem">
+						<img src="{{pic.images.standard_resolution.url}}">
+					</div>
+					<p>{{pic.caption.text}}</p>
+				</li>
+			</ul>
 			</div>
 		</div>
 	</div>
