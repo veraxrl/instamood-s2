@@ -78,21 +78,21 @@ app.controller('MainCtrl', function($scope, $http) {
       $scope.active=$scope.days[idx];
   }
 
-	$scope.analyzeSentiments = function() {
-    // when you call this function, $scope.picArray should have an array of all 
-    // your instas. Use the sentiment analysis API to get a score of how positive your 
-    // captions are
-    $http({
-      url: "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
-      method:"GET",
-      params: {
+	// $scope.analyzeSentiments = function() {
+ //    // when you call this function, $scope.picArray should have an array of all 
+ //    // your instas. Use the sentiment analysis API to get a score of how positive your 
+ //    // captions are
+ //    $http({
+ //      url: "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
+ //      method:"GET",
+ //      params: {
         
-      }
-    }).then(function(response) {
-      console.log(response);
-    })
+ //      }
+ //    }).then(function(response) {
+ //      console.log(response);
+ //    })
 
-	}
+	// }
 
 
 });

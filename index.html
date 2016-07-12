@@ -25,7 +25,7 @@
 <body ng-app="Instamood">
 	<div class="container" ng-controller="MainCtrl">
 		<div class="row profile">
-			<h1>Vera's User Stats</h1>
+			<h1>User Instagram Stats</h1>
 			<p>Ego Score: {{ego}}</p>
 			<p>Popularity: {{pop}}</p>
 			<p>Active Days: {{active}}</p>
@@ -50,7 +50,7 @@
 
 			<div class="main">
 				<ul style="list-style:none;">
-					<li ng-repeat="pic in picArray track by $index" class="col-lg-6 col-md-6 col-sm-12">
+					<li ng-repeat="pic in picArray track by $index" class="col-lg-12 col-md-12 col-sm-12">
 						<div class="listItem">
 							<img src="{{pic.images.standard_resolution.url}}">
 						</div>
