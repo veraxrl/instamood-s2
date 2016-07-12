@@ -25,7 +25,7 @@
 <body ng-app="Instamood">
 	<div class="container" ng-controller="MainCtrl">
 		<div class="row profile">
-			<h1>User's Stats</h1>
+			<h1>Vera's User Stats</h1>
 			<p>Ego Score: {{ego}}</p>
 			<p>Popularity: {{pop}}</p>
 			<p>Active Days: {{active}}</p>
@@ -35,27 +35,30 @@
 
 		<div class="row">
 			<div class="login-btn btn" ng-hide="hasToken" ng-click="getInstaPics()">
-				  <a href="https://api.instagram.com/oauth/authorize/?client_id=	234f2a2c0974467bb2a8cba6184be19c&redirect_uri=http://localhost:8000&response_type=token" class="btn btn-info btn-lg btn-block">
-          <i class="fa fa-instagram"></i>
-            Log in with Instagram
-          </a>
-			</div>
-			<div ng-show="hasToken">
-        <!-- challenge: make it so that you don't have to click this link for
-             the pictures the load -->
-			<div class="row">
-				<button ng-click="analyzeSentiments()">Analyze Sentiments</button>
-				<button ng-click="getInstaPics()">Load pictures!</button>
+				<a href="https://api.instagram.com/oauth/authorize/?client_id=	234f2a2c0974467bb2a8cba6184be19c&redirect_uri=http://localhost:8000&response_type=token" class="btn btn-info btn-lg btn-block">
+          			<i class="fa fa-instagram"></i>
+            		Log in with Instagram
+         		 </a>
 			</div>
 
-			<ul style="list-style:none;">
-				<li ng-repeat="pic in picArray track by $index" class="col-lg-6 col-md-6 col-sm-12">
-					<div class="listItem">
-						<img src="{{pic.images.standard_resolution.url}}">
-					</div>
-					<p>{{pic.caption.text}}</p>
-				</li>
-			</ul>
+			<div ng-show="hasToken">
+				<div class="row">
+					<button ng-click="getStats()">Get Stats</button>
+					<button ng-click="getInstaPics()">Load pictures!</button>
+					<button ng-click="analyzeSentiments()">Analyze Sentiments</button>
+				</div>
+
+			<div class="main">
+				<ul style="list-style:none;">
+					<li ng-repeat="pic in picArray track by $index" class="col-lg-6 col-md-6 col-sm-12">
+						<div class="listItem">
+							<img src="{{pic.images.standard_resolution.url}}">
+						</div>
+						<p>{{pic.caption.text}}</p>
+					</li>
+				</ul>
+			</div>
+
 			</div>
 		</div>
 	</div>

@@ -46,31 +46,28 @@ app.controller('MainCtrl', function($scope, $http) {
       }
   }
 
-	$scope.analyzeSentiments = function() {
-    // when you call this function, $scope.picArray should have an array of all 
-    // your instas. Use the sentiment analysis API to get a score of how positive your 
-    // captions are
-   		var totalLikes=0;
-   		var egoCount=0;
-   		var n=$scope.picArray.length;
-   		var capLength=0;
-   		var numTag=0;
-    	for (var i=0;i<n;i++) {
+  $scope.getStats = function() {
+      var totalLikes=0;
+      var egoCount=0;
+      var n=$scope.picArray.length;
+      var capLength=0;
+      var numTag=0;
+      for (var i=0;i<n;i++) {
         //Calculate most accurate day of the week:
         var unix_timestramp=$scope.picArray[i].created_time;
         $scope.unixConversion(unix_timestramp);
 
-    		totalLikes+=$scope.picArray[i].likes.count;
-    		if ($scope.picArray[i].user_has_liked) egoCount++;
-    		if ($scope.picArray[i].caption !== null) {
-    			capLength+=$scope.picArray[i].caption.text.length;
-    		}
-    		numTag+=$scope.picArray[i].tags.length;
-    	}
-    	$scope.pop=totalLikes/n;
-    	$scope.ego=egoCount/n;
-    	$scope.brevity=capLength/n;
-    	$scope.thirst=numTag/n;
+        totalLikes+=$scope.picArray[i].likes.count;
+        if ($scope.picArray[i].user_has_liked) egoCount++;
+        if ($scope.picArray[i].caption !== null) {
+          capLength+=$scope.picArray[i].caption.text.length;
+        }
+        numTag+=$scope.picArray[i].tags.length;
+      }
+      $scope.pop=totalLikes/n;
+      $scope.ego=egoCount/n;
+      $scope.brevity=capLength/n;
+      $scope.thirst=numTag/n;
       //activity calculation:
       //console.log($scope.dateCount);
       var max=$scope.dateCount[0];
@@ -79,6 +76,22 @@ app.controller('MainCtrl', function($scope, $http) {
         if ($scope.dateCount[i]>max) idx=i;
       }
       $scope.active=$scope.days[idx];
+  }
+
+	$scope.analyzeSentiments = function() {
+    // when you call this function, $scope.picArray should have an array of all 
+    // your instas. Use the sentiment analysis API to get a score of how positive your 
+    // captions are
+    $http({
+      url: "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
+      method:"GET",
+      params: {
+        
+      }
+    }).then(function(response) {
+      console.log(response);
+    })
+
 	}
 
 
