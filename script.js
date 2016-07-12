@@ -31,6 +31,20 @@ app.controller('MainCtrl', function($scope, $http) {
       console.log(response);
       // now analyze the sentiments and do some other analysis
       // on your images 
+ 
+      $http({
+        url: "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
+        method:"GET",
+        params: {
+          "X-Mashape-Key": "i2jWDgIPZ7mshUeTyB1zxDtRA09cp1vFN8HjsnNOuqy1eXOT6A",
+          "text": "great value in its price range!",
+          "Accept":"application/json"
+        }
+      }).then(function(response) {
+        console.log(response);
+      })
+
+
 	  })
 	};
 
@@ -77,22 +91,5 @@ app.controller('MainCtrl', function($scope, $http) {
       }
       $scope.active=$scope.days[idx];
   }
-
-	// $scope.analyzeSentiments = function() {
- //    // when you call this function, $scope.picArray should have an array of all 
- //    // your instas. Use the sentiment analysis API to get a score of how positive your 
- //    // captions are
- //    $http({
- //      url: "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
- //      method:"GET",
- //      params: {
-        
- //      }
- //    }).then(function(response) {
- //      console.log(response);
- //    })
-
-	// }
-
 
 });
